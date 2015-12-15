@@ -1,0 +1,16 @@
+first_test_profile:
+    suites:
+        standard:
+            paths: [ src/BDDTestBundle/Features/myfirstfeature.feature ]
+            contexts:
+                - BDDTestBundle\Features\Context\Eztests
+        platformUI:
+            paths: [ src/BDDTestBundle/Features/mysecondfeature.feature ]
+            contexts:
+                - BDDTestBundle\Features\Context\PlatformUITests
+
+# paths: [ src/BDDTestBundle/Features/ ] => Corre todos os testes nesta pasta
+
+# Criar Pasta Features\Context
+# Criar Class Features\Context\Eztests.php
+
