@@ -8,6 +8,10 @@ first_test_profile:
             paths: [ src/BDDTestBundle/Features/mysecondfeature.feature ]
             contexts:
                 - BDDTestBundle\Features\Context\PlatformUITests
+        contentActions:
+            paths: [ src/BDDTestBundle/Features/contentActions.feature ]
+            contexts:
+                - BDDTestBundle\Features\Context\ContentActions
 
 # paths: [ src/BDDTestBundle/Features/ ] => Corre todos os testes nesta pasta
 

@@ -46,10 +46,6 @@ Feature: First BDD PlatformUI Tests
     @javascript
     Scenario: [tc-2768:EZP-24973] Non-containers are being allowed as locations
         Given I go to PlatformUI app with username "admin" and password "publish"
-        And I have a Content Type with identifier "NonContainerTest7" in Group with identifier "Content" with fields:
+        And I have a Content Type with identifier "NonContainerTest11" in Group with identifier "Content" with fields:
                 | identifier | type       | name |
                 | title      | ezstring   | Name |
-        And I create a content of content type "NonContainerTest7" with:
-                | Field | Value |
-                | Name  | Test1 |
-

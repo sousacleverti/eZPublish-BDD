@@ -96,7 +96,6 @@ class PlatformUITests extends PlatformUI {
         // Use sudo in order to have permission to create contents
         $repository->sudo(
             function() use($repository, $contentIdentifier, $contentGroupIdentifier, $fields) {
-
                 $contentTypeService = $repository->getContentTypeService();
 
                 // Create a 'Content' ContentTypeGroup object
