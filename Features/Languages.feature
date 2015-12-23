@@ -9,7 +9,7 @@ Feature: Perform languages admin related operations
     Scenario: Verify the existence of Languages page and it's content
         Given I see the Languages page
         Then I see the following limitations fields:
-            | Language name   | Language code | Language ID | Enabled |
+            | Language name  | Language code | Language ID | Enabled |
         And I see the "Create a new language" link
 
     @javascript
