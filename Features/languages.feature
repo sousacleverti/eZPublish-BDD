@@ -5,12 +5,12 @@ Feature: Perform languages admin related operations
         And I click on the navigation zone "Admin Panel"
         And I click on the navigation item "Languages"
 
-    @javascript
+    @javascript @run
     Scenario: Verify the existence of Languages page and it's content
         Given I see the Languages page
         Then I see the following limitations fields:
             | Language name   | Language code | Language ID | Enabled |
-        Then I can see "Create a new language" link
+        And I see the "Create a new language" link
 
     @javascript
     Scenario: Create a new language

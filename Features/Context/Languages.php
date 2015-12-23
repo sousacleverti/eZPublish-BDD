@@ -3,7 +3,6 @@
 namespace BDDTestBundle\Features\Context;
 
 use EzSystems\PlatformUIBundle\Features\Context\PlatformUI;
-use EzSystems\BehatBundle\Context\Browser\SubContext;
 use Behat\Gherkin\Node\TableNode;
 
 class Languages extends PlatformUI {
@@ -14,6 +13,13 @@ class Languages extends PlatformUI {
     public function iSeeTheLanguagesPage() {
         $this->sleep();
         $this->iSeeTitle('Languages');
+    }
+
+    /**
+     * @Then I see the :link link
+     */
+    public function iSeeLink($link) {
+        $this->getElementContainsText($link, 'a');
     }
 
     /**
