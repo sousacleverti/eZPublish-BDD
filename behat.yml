@@ -8,17 +8,19 @@ first_test_profile:
             paths: [ src/BDDTestBundle/Features/mysecondfeature.feature ]
             contexts:
                 - BDDTestBundle\Features\Context\PlatformUITests
+
+platformUI_BDD_profile:
+    suites:
         contentActions:
-            paths: [ src/BDDTestBundle/Features/contentActions.feature ]
+            paths: [ src/BDDTestBundle/Features/ContentActions.feature ]
             contexts:
                 - BDDTestBundle\Features\Context\ContentActions
         languages:
-            paths: [ src/BDDTestBundle/Features/languages.feature ]
+            paths: [ src/BDDTestBundle/Features/Languages.feature ]
             contexts:
                 - BDDTestBundle\Features\Context\Languages
-
-# paths: [ src/BDDTestBundle/Features/ ] => Corre todos os testes nesta pasta
-
-# Criar Pasta Features\Context
-# Criar Class Features\Context\Eztests.php
+        textLineFieldType:
+            paths: [ src/BDDTestBundle/Features/TextLineFieldType.feature ]
+            contexts:
+                - BDDTestBundle\Features\Context\TextLineFieldType
 
