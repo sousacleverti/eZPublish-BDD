@@ -1,6 +1,6 @@
 
 Feature: Test the validations done on fields from PlatformUI - isbn fieldtype
-    In order to validate the isbn address fieldtype
+    In order to validate the isbn fieldtype
     As an Editor user
     I need to be able to create and update content with isbn fieldtype
 
