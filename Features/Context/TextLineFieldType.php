@@ -1,10 +1,6 @@
 <?php
-
 namespace BDDTestBundle\Features\Context;
+use EzSystems\PlatformUIBundle\Features\Context\Fields;
 
-use EzSystems\PlatformUIBundle\Features\Context\PlatformUI;
-use Behat\Gherkin\Node\TableNode;
-
-class TextLineFieldType extends PlatformUI {
-
+class TextLineFieldType extends Fields {
 }

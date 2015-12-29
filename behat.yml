@@ -23,4 +23,12 @@ platformUI_BDD_profile:
             paths: [ src/BDDTestBundle/Features/TextLineFieldType.feature ]
             contexts:
                 - BDDTestBundle\Features\Context\TextLineFieldType
+        eMailFieldType:
+            paths: [ src/BDDTestBundle/Features/EmailFieldType.feature ]
+            contexts: [ EzSystems\PlatformUIBundle\Features\Context\Fields ]
+                #- BDDTestBundle\Features\Context\EmailFieldType
+        isbnFieldType:
+            paths: [ src/BDDTestBundle/Features/ISBNFieldType.feature ]
+            contexts: [ EzSystems\PlatformUIBundle\Features\Context\Fields ]
+                #- BDDTestBundle\Features\Context\ISBNFieldType
 

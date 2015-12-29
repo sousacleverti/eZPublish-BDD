@@ -1,5 +1,5 @@
 Feature: Change main location of a content
-    @runnable
+
     @javascript
     Scenario: I want to change the main location of a content
         Given I go to PlatformUI app with username "admin" and password "publish"

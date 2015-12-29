@@ -1,8 +1,8 @@
 
-Feature: Test the validations done on fields from PlatformUI - TextLine fieldtype
-    In order to validate the textline fieldtype
+Feature: Test the validations done on fields from PlatformUI - text line fieldtype
+    In order to validate the text line fieldtype
     As an Editor user
-    I need to be able to create and update content with textline fieldtypes
+    I need to be able to create and update content with text line fieldtypes
 
     Background:
        Given I am logged in as an 'Administrator' in PlatformUI
@@ -10,175 +10,152 @@ Feature: Test the validations done on fields from PlatformUI - TextLine fieldtyp
     ##
     # Validate the existence of expected fields from a field type when creating a content
     ##
-    @javascript @run
-    Scenario: A Content of a Content Type that has a textline fieldtype must have a text field
-        Given a Content Type with an "text line" Field exists
-        #When I create a content of this type
-        #Then I should see an "text line" field
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @javascript
-    Scenario: When editing a Content the label of a integer field must have the same name than field type from the respective Content Type
-        Given a Content Type with an "integer" with field definition name "Quantity" exists
+    Scenario: A Content of a Content Type that has a text line fieldtype must have a text field
+        Given a Content Type with a "text line" Field exists
         When I create a content of this type
-        Then I should see a "Quantity" label related with the "integer" field
+        Then I should see a "text line" field
 
     @javascript
-    Scenario: The label of a required integer field of a Content must be marked as required
-        Given a Content Type with a required "integer" with field definition name "Required" exists
+    Scenario: When editing a Content, the label of a text line field must have the same name than field type from the respective Content Type
+        Given a Content Type with a "text line" with field definition name "Test text" exists
+        When I create a content of this type
+        Then I should see a "Test text" label related with the "text line" field
+
+    @javascript
+    Scenario: The label of a required text line field of a Content must be marked as required
+        Given a Content Type with a required "text line" with field definition name "Required" exists
         When I create a content of this type
         Then the "Required" field should be marked as required
 
     ##
-    # Creating Content using a Content Type that has an Integer Field Type
+    # Creating Content using a Content Type that has a text line Field Type
     ##
     @javascript
-    Scenario: Creating a valid integer Field works
-        Given a Content Type with an "integer" Field exists
+    Scenario: Creating a text line Field works
+        Given a Content Type with a "text line" Field exists
         When I create a content of this type
-        And I set "10" as the Field Value
+        And I set "Test text" as the Field Value
         And I publish the content
         Then the Content is successfully published
 
     @javascript
-    Scenario: Creating a valid integer Field works when using a value within limited scope
-        Given a Content Type with an "integer" Field exists with Properties:
-            | Validator               | Value |
-            | minimum value validator | 1     |
-            | maximum value validator | 3     |
-        When I create a content of this Type
-        And I set "2" as the Field Value
+    Scenario: Creating a text line Field with an empty value works
+        Given a Content Type with a "text line" Field exists
+        When I create a content of this type
+        And I set an empty value as the Field Value
         And I publish the content
         Then the Content is successfully published
 
     @javascript
-    Scenario: Creating an invalid integer Field fails validation when using a value smaller than minimum value allowed
-        Given a Content Type with an "integer" Field exists with Properties:
-            | Validator               | Value |
-            | minimum value validator | 1     |
-            | maximum value validator | 3     |
-        When I create a content of this Type
-        And I set "0" as the Field Value
-        And I publish the content
-        Then Publishing fails with validation error message "The value should be more than or equal to 1"
-
-    @javascript
-    Scenario: Creating an invalid integer Field fails validation when using a value bigger than maximum value allowed
-        Given a Content Type with an "integer" Field exists with Properties:
-            | Validator               | Value |
-            | minimum value validator | 1     |
-            | maximum value validator | 3     |
-        When I create a content of this Type
-        And I set "4" as the Field Value
-        And I publish the content
-        Then Publishing fails with validation error message "The value should be less than or equal to 3"
-
-    @javascript
-    Scenario: Creating an invalid integer Field fails validation when using a string
-        Given a Content Type with an "integer" Field exists
-        When I create a content of this Type
-        And I set "a" as the Field Value
-        And I publish the content
-        Then Publishing fails with validation error message "The value should be a valid integer number"
-
-    @javascript
-    Scenario: Creating an invalid integer Field fails validation when using a float
-        Given a Content Type with an "integer" Field exists
-        When I create a content of this Type
-        And I set "1.5" as the Field Value
-        And I publish the content
-        Then Publishing fails with validation error message "The value should be a valid integer number"
-
-    @javascript
-    Scenario: Creating a required integer Field fails validation when using an empty value
-        Given a Content Type with a required "integer" Field exists
+    Scenario: Creating a required text line Field fails validation when using an empty value
+        Given a Content Type with a required "text line" Field exists
         When I create a content of this type
         And I set an empty value as the Field Value
         And I publish the content
         Then Publishing fails with validation error message "This field is required"
 
+    @javascript
+    Scenario: Creating a valid text line Field works when using a value within limited character scope
+        Given a Content Type with a "text line" Field exists with Properties:
+            | Validator                | Value |
+            | minimum length validator | 2     |
+            | maximum length validator | 4     |
+        When I create a content of this Type
+        And I set "LOL" as the Field Value
+        And I publish the content
+        Then the Content is successfully published
+
+    ############################################################################
+    ########### This Scenario is now failing. Issue opened:
+    ############################################################################
+    @javascript
+    Scenario: Creating an invalid text line Field fails validation when using a value smaller than minimum character limit allowed
+        Given a Content Type with a "text line" Field exists with Properties:
+            | Validator                | Value |
+            | minimum length validator | 2     |
+            | maximum length validator | 4     |
+        When I create a content of this Type
+        And I set "X" as the Field Value
+        And I publish the content
+        Then Publishing fails with validation error message "The value should have at least 2 characters"
+
+    ############################################################################
+    ########### This Scenario is now failing. Issue opened:
+    ############################################################################
+    @javascript
+    Scenario: Creating an invalid text line Field fails validation when using a value bigger than maximum character limit allowed
+        Given a Content Type with a "text line" Field exists with Properties:
+            | Validator                | Value |
+            | minimum length validator | 2     |
+            | maximum length validator | 4     |
+        When I create a content of this Type
+        And I set "Hipopotomonstrosesquipedaliofobia" as the Field Value
+        And I publish the content
+        Then Publishing fails with validation error message "The value should have at most 4 characters"
+
     ##
-    # Update Content using a Content Type that has an Integer Field Type
+    # Update Content using a Content Type that has a text line Field Type
     ##
     @javascript
-    Scenario: Updating an integer field using a valid integer Field works
-        Given a Content Type with an "integer" Field exists
+    Scenario: Updating a text line field using a text line Field works
+        Given a Content Type with a "text line" Field exists
         And a Content of this type exists
         When I edit this content
-        And I set "10" as the Field Value
+        And I set "Test text update" as the Field Value
         And I publish the content
         Then the Content is successfully published
 
     @javascript
-    Scenario: Updating an integer Field works when using a value within limited scope
-        Given a Content Type with an "integer" Field exists with Properties:
-            | Validator               | Value |
-            | minimum value validator | 1     |
-            | maximum value validator | 3     |
-        And a Content of this type exists
-        When I edit this content
-        And I set "2" as the Field Value
+    Scenario: Updating a text line Field with an empty value works
+        Given a Content Type with a "text line" Field exists
+        When I create a content of this type
+        And I set an empty value as the Field Value
         And I publish the content
         Then the Content is successfully published
 
     @javascript
-    Scenario: Updating an integer Field fails validation when using a value smaller than minimum value allowed
-        Given a Content Type with an "integer" Field exists with Properties:
-            | Validator               | Value |
-            | minimum value validator | 1     |
-            | maximum value validator | 3     |
-        And a Content of this type exists
+    Scenario: Updating a valid text line Field works when using a value within limited character scope
+        Given a Content Type with a "text line" Field exists with Properties:
+            | Validator                | Value |
+            | minimum length validator | 2     |
+            | maximum length validator | 4     |
         When I edit this content
-        And I set "0" as the Field Value
+        And I set "LOL" as the Field Value
         And I publish the content
-        Then Publishing fails with validation error message "The value should be more than or equal to 1"
+        Then the Content is successfully published
+
+    ############################################################################
+    ########### This Scenario is now failing. Issue opened:
+    ############################################################################
+    @javascript
+    Scenario: Updating a text line Field fails validation when using a value smaller than minimum character limit allowed
+        Given a Content Type with a "text line" Field exists with Properties:
+            | Validator                | Value |
+            | minimum length validator | 2     |
+            | maximum length validator | 4     |
+        When I edit this content
+        And I set "X" as the Field Value
+        And I publish the content
+        Then Publishing fails with validation error message "The value should have at least 2 characters"
+
+    ############################################################################
+    ########### This Scenario is now failing. Issue opened:
+    ############################################################################
+    @javascript
+    Scenario: Updating a text line Field fails validation when using a value bigger than maximum character limit allowed
+        Given a Content Type with a "text line" Field exists with Properties:
+            | Validator                | Value |
+            | minimum length validator | 2     |
+            | maximum length validator | 4     |
+        When I edit this content
+        And I set "Hipopotomonstrosesquipedaliofobia" as the Field Value
+        And I publish the content
+        Then Publishing fails with validation error message "The value should have at most 4 characters"
 
     @javascript
-    Scenario: Updating an integer Field fails validation when using a value bigger than maximum value allowed
-        Given a Content Type with an "integer" Field exists with Properties:
-            | Validator               | Value |
-            | minimum value validator | 1     |
-            | maximum value validator | 3     |
-        And a Content of this type exists
-        When I edit this content
-        And I set "4" as the Field Value
-        And I publish the content
-        Then Publishing fails with validation error message "The value should be less than or equal to 3"
-
-    @javascript
-    Scenario: Updating an integer Field fails validation when using a string
-        Given a Content Type with an "integer" Field exists
-        And a Content of this type exists
-        When I edit this content
-        And I set "a" as the Field Value
-        And I publish the content
-        Then Publishing fails with validation error message "The value should be a valid integer number"
-
-    @javascript
-    Scenario: Updating an integer Field fails validation  when using a float
-        Given a Content Type with an "integer" Field exists
-        And a Content of this type exists
-        When I edit this content
-        And I set "1.5" as the Field Value
-        And I publish the content
-        Then Publishing fails with validation error message "The value should be a valid integer number"
-
-    @javascript
-    Scenario: Updating a required integer Field fails validation when using an empty value
-        Given a Content Type with a required "integer" Field exists
+    Scenario: Updating a required text line Field fails validation when using an empty value
+        Given a Content Type with a required "text line" Field exists
         And a Content of this type exists
         When I edit this content
         And I set an empty value as the Field Value
@@ -186,32 +163,18 @@ Feature: Test the validations done on fields from PlatformUI - TextLine fieldtyp
         Then Publishing fails with validation error message "This field is required"
 
     ##
-    # Viewing content that has an integer fieldtype
+    # Viewing content that has a text line fieldtype
     ##
     @javascript
-    Scenario: Viewing a Content that has an integer fieldtype should show the expected value when the value is positive
-        Given a Content Type with an "integer" Field exists
-        And a Content of this type exists with "integer" Field Value set to "1"
+    Scenario: Viewing a Content that has a text line fieldtype should show the expected value when the value is positive
+        Given a Content Type with a "text line" Field exists
+        And a Content of this type exists with "text line" Field Value set to "Test text"
         When I view this Content
-        Then I should see a field with value "1"
+        Then I should see a field with value "Test text"
 
     @javascript
-    Scenario: Viewing a Content that has an integer fieldtype should return the expected value when the value is equal to zero
-        Given a Content Type with an "integer" Field exists
-        And a Content of this type exists with "integer" Field Value set to "0"
-        When I view this Content
-        Then I should see a field with value "0"
-
-    @javascript
-    Scenario: Viewing a Content that has an integer fieldtype should return the expected value when the value is negative
-        Given a Content Type with an "integer" Field exists
-        And a Content of this type exists with "integer" Field Value set to "-1"
-        When I view this Content
-        Then I should see a field with value "-1"
-
-    @javascript
-    Scenario: Viewing a Content that has an integer fieldtype should return "This field is empty" when the value is empty
-        Given a Content Type with an "integer" Field exists
-        And a Content of this type exists with "integer" Field Value set to empty
+    Scenario: Viewing a Content that has a text line fieldtype should return "This field is empty" when the value is empty
+        Given a Content Type with a "text line" Field exists
+        And a Content of this type exists with "text line" Field Value set to empty
         When I view this Content
         Then I should see a field with value "This field is empty"
