@@ -11,19 +11,19 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
     ##
     # Validate the existence of expected fields from a field type when creating a content
     ##
-    @javascript @pass
+    @javascript
     Scenario: A Content of a Content Type that has a text block fieldtype must have a text field
         Given a Content Type with a "text block" Field exists
         When I create a content of this type
         Then I should see a "text block" field
 
-    @javascript @pass
+    @javascript
     Scenario: When editing a Content, the label of a text block field must have the same name than field type from the respective Content Type
         Given a Content Type with a "text block" with field definition name "Test text" exists
         When I create a content of this type
         Then I should see a "Test text" label related with the "text block" field
 
-    @javascript @pass
+    @javascript
     Scenario: The label of a required text block field of a Content must be marked as required
         Given a Content Type with a required "text block" with field definition name "Required" exists
         When I create a content of this type
@@ -32,7 +32,7 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
     ##
     # Creating Content using a Content Type that has a text block Field Type
     ##
-    @javascript @pass
+    @javascript
     Scenario: Creating a text block Field works
         Given a Content Type with a "text block" Field exists
         When I create a content of this type
@@ -44,7 +44,7 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
         And I publish the content
         Then the Content is successfully published
 
-    @javascript @pass
+    @javascript
     Scenario: Creating a text block Field with an empty value works
         Given a Content Type with a "text block" Field exists
         When I create a content of this type
@@ -101,14 +101,14 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
             | Name       | Test  |
             | Identifier | test  |
         And I add a field type "Text block" with:
-            | Field                | Value |
-            | Name                 | Text  |
-            | Identifier           | text  |
-            | Number of text rows  | 0     |
+            | Field               | Value |
+            | Name                | Text  |
+            | Identifier          | text  |
+            | Number of text rows | 0     |
         And I click at "OK" button
         Then Publishing fails with validation error message "Form did not validate. Please review errors below."
 
-    @javascript @edge @run
+    @javascript @edge
     Scenario: Creating an invalid content type with a text line Field fails when using a negative row number limit
         Given I am on the "Content types" page
         And I click in the "Content" Content type group
@@ -118,17 +118,17 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
             | Name       | Test  |
             | Identifier | test  |
         And I add a field type "Text block" with:
-            | Field                | Value |
-            | Name                 | Text  |
-            | Identifier           | text  |
-            | Number of text rows  | -1    |
+            | Field               | Value |
+            | Name                | Text  |
+            | Identifier          | text  |
+            | Number of text rows | -1    |
         And I click at "OK" button
         Then Publishing fails with validation error message "Form did not validate. Please review errors below."
 
     ##
     # Update Content using a Content Type that has a text block Field Type
     ##
-    @javascript @pass
+    @javascript
     Scenario: Updating a text block field using a text block Field works
         Given a Content Type with a "text block" Field exists
         And a Content of this type exists
@@ -137,7 +137,7 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
         And I publish the content
         Then the Content is successfully published
 
-    @javascript @pass
+    @javascript
     Scenario: Updating a text block Field with an empty value works
         Given a Content Type with a "text block" Field exists
         When I create a content of this type
@@ -188,14 +188,14 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
     ##
     # Viewing content that has a text block fieldtype
     ##
-    @javascript @pass
+    @javascript
     Scenario: Viewing a Content that has a text block fieldtype should show the expected value when the value is positive
         Given a Content Type with a "text block" Field exists
         And a Content of this type exists with "text block" Field Value set to "Test text"
         When I view this Content
         Then I should see a field with value "Test text"
 
-    @javascript @pass
+    @javascript
     Scenario: Viewing a Content that has a text block fieldtype should return "This field is empty" when the value is empty
         Given a Content Type with a "text block" Field exists
         And a Content of this type exists with "text block" Field Value set to empty
