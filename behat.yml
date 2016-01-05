@@ -31,4 +31,11 @@ platformUI_BDD_profile:
             paths: [ src/BDDTestBundle/Features/ISBNFieldType.feature ]
             contexts: [ EzSystems\PlatformUIBundle\Features\Context\Fields ]
                 #- BDDTestBundle\Features\Context\ISBNFieldType
-
+        checkBoxFieldType:
+            paths: [ src/BDDTestBundle/Features/CheckBoxFieldType.feature ]
+            contexts: [ EzSystems\PlatformUIBundle\Features\Context\Fields ]
+                #- BDDTestBundle\Features\Context\CheckBoxFieldType
+        textBlockFieldType:
+            paths: [ src/BDDTestBundle/Features/TextBlockFieldType.feature ]
+            contexts: [ EzSystems\PlatformUIBundle\Features\Context\Fields ]
+                #- BDDTestBundle\Features\Context\TextBlockFieldType
