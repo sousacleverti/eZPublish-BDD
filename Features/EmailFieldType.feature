@@ -1,6 +1,6 @@
 Feature: Test the validations done on fields from PlatformUI - Email fieldtype
     In order to validate the e-mail address fieldtype
-    As an Editor  user
+    As an Editor user
     I need to be able to create and update content with e-mail address fieldtype
 
     Background:

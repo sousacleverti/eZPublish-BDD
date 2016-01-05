@@ -60,8 +60,8 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
         And I publish the content
         Then Publishing fails with validation error message "This field is required"
 
-    @javascript @fail @run
-    Scenario: Creating a valid text block Field works when using a value within limited row number scope
+    @javascript @fail
+    Scenario: Creating a valid text block Field works when using a value below the row number limit
         Given a Content Type with a "text block" Field exists with Properties:
             | Validator                     | Value |
             | number of text rows validator | 3     |
@@ -76,7 +76,7 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
         Then the Content is successfully published
 
     @javascript @fail
-    Scenario: Creating an invalid text block Field fails validation when using a value bigger than maximum row number limit allowed
+    Scenario: Creating an invalid text block Field fails validation when using a value above the row number limit
         Given a Content Type with a "text block" Field exists with Properties:
             | Validator                     | Value |
             | number of text rows validator | 3     |
@@ -90,6 +90,40 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
             """
         And I publish the content
         Then Publishing fails with validation error message "The value should have at most 3 rows"
+
+    @javascript @edge @run
+    Scenario: Creating an invalid content type with a text line Field fails when using a row number limit of zero
+        Given I am on the "Content types" page
+        And I click in the "Content" Content type group
+        When I click at "Create a content type" button
+        And I fill form with:
+            | Field      | Value |
+            | Name       | Test  |
+            | Identifier | test  |
+        And I add a field type "Text block" with:
+            | Field                | Value |
+            | Name                 | Text  |
+            | Identifier           | text  |
+            | Number of text rows  | 0     |
+        And I click at "OK" button
+        Then Publishing fails with validation error message "Form did not validate. Please review errors below."
+
+    @javascript @edge @run
+    Scenario: Creating an invalid content type with a text line Field fails when using a negative row number limit
+        Given I am on the "Content types" page
+        And I click in the "Content" Content type group
+        When I click at "Create a content type" button
+        And I fill form with:
+            | Field      | Value |
+            | Name       | Test  |
+            | Identifier | test  |
+        And I add a field type "Text block" with:
+            | Field                | Value |
+            | Name                 | Text  |
+            | Identifier           | text  |
+            | Number of text rows  | -1    |
+        And I click at "OK" button
+        Then Publishing fails with validation error message "Form did not validate. Please review errors below."
 
     ##
     # Update Content using a Content Type that has a text block Field Type
@@ -112,7 +146,7 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
         Then the Content is successfully published
 
     @javascript @fail
-    Scenario: Updating a valid text block Field works when using a value within limited row number scope
+    Scenario: Creating a valid text block Field works when using a value below the row number limit
         Given a Content Type with a "text block" Field exists with Properties:
             | Validator                     | Value |
             | number of text rows validator | 3     |
@@ -127,7 +161,7 @@ Feature: Test the validations done on fields from PlatformUI - text block fieldt
         Then the Content is successfully published
 
     @javascript @fail
-    Scenario: Updating a text block Field fails validation when using a value bigger than maximum row number limit allowed
+    Scenario: Creating an invalid text block Field fails validation when using a value above the row number limit
         Given a Content Type with a "text block" Field exists with Properties:
             | Validator                     | Value |
             | number of text rows validator | 3     |
