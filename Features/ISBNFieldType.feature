@@ -129,7 +129,7 @@ Feature: Test the validations done on fields from PlatformUI - isbn fieldtype
     ##
     # Creating Content using a Content Type that has an isbn Field Type with ISBN-10 format
     ##
-    @javascript @run
+    @javascript
     Scenario: Creating a valid isbn Field works with ISBN-10 format
         Given a Content Type with an "isbn" Field exists with Properties:
             | Validator          | Value  |
@@ -139,7 +139,7 @@ Feature: Test the validations done on fields from PlatformUI - isbn fieldtype
         And I publish the content
         Then the Content is successfully published
 
-    @javascript @run
+    @javascript
     Scenario: Creating an invalid isbn Field fails validation when using an invalid ISBN-10 format
         Given a Content Type with an "isbn" Field exists with Properties:
             | Validator          | Value  |
@@ -149,7 +149,7 @@ Feature: Test the validations done on fields from PlatformUI - isbn fieldtype
         And I publish the content
         Then Publishing fails with validation error message "This is not a correct ISBN10 pattern"
 
-    @javascript @run
+    @javascript
     Scenario: Creating an isbn Field with an empty value works with ISBN-10 format
         Given a Content Type with an "isbn" Field exists with Properties:
             | Validator          | Value  |
@@ -162,7 +162,7 @@ Feature: Test the validations done on fields from PlatformUI - isbn fieldtype
     ##
     # Update Content using a Content Type that has an isbn Field Type with ISBN-10 format
     ##
-    @javascript @run
+    @javascript
     Scenario: Updating to a valid isbn Field works with ISBN-10 format
         Given a Content Type with an "isbn" Field exists with Properties:
             | Validator          | Value  |
@@ -172,7 +172,7 @@ Feature: Test the validations done on fields from PlatformUI - isbn fieldtype
         And I publish the content
         Then the Content is successfully published
 
-    @javascript @run
+    @javascript
     Scenario: Updating an invalid isbn Field fails validation when using an invalid ISBN-10 format
         Given a Content Type with an "isbn" Field exists with Properties:
             | Validator          | Value  |
@@ -185,7 +185,7 @@ Feature: Test the validations done on fields from PlatformUI - isbn fieldtype
     ##
     # Viewing content that has an isbn Field Type with ISBN-13 format
     ##
-    @javascript @run
+    @javascript
     Scenario: Viewing a Content that has an isbn fieldtype should show the expected value with ISBN-10 format
         Given a Content Type with an "isbn" Field exists with Properties:
             | Validator          | Value  |
@@ -194,7 +194,7 @@ Feature: Test the validations done on fields from PlatformUI - isbn fieldtype
         When I view this Content
         Then I should see a field with value "8087888243"
 
-    @javascript @run
+    @javascript
     Scenario: Viewing a Content that has an isbn fieldtype should return "This field is empty" when the value is empty with ISBN-10 format
         Given a Content Type with an "isbn" Field exists with Properties:
             | Validator          | Value  |

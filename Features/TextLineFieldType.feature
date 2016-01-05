@@ -1,4 +1,3 @@
-
 Feature: Test the validations done on fields from PlatformUI - text line fieldtype
     In order to validate the text line fieldtype
     As an Editor user
@@ -66,9 +65,6 @@ Feature: Test the validations done on fields from PlatformUI - text line fieldty
         And I publish the content
         Then the Content is successfully published
 
-    ############################################################################
-    ########### This Scenario is now failing. Issue opened:
-    ############################################################################
     @javascript
     Scenario: Creating an invalid text line Field fails validation when using a value smaller than minimum character limit allowed
         Given a Content Type with a "text line" Field exists with Properties:
@@ -80,10 +76,7 @@ Feature: Test the validations done on fields from PlatformUI - text line fieldty
         And I publish the content
         Then Publishing fails with validation error message "The value should have at least 2 characters"
 
-    ############################################################################
-    ########### This Scenario is now failing. Issue opened:
-    ############################################################################
-    @javascript
+    @javascript @isFailing
     Scenario: Creating an invalid text line Field fails validation when using a value bigger than maximum character limit allowed
         Given a Content Type with a "text line" Field exists with Properties:
             | Validator                | Value |
@@ -93,6 +86,96 @@ Feature: Test the validations done on fields from PlatformUI - text line fieldty
         And I set "Hipopotomonstrosesquipedaliofobia" as the Field Value
         And I publish the content
         Then Publishing fails with validation error message "The value should have at most 4 characters"
+
+    @javascript @edge
+    Scenario: Creating an invalid content type with a text line Field fails validation when using a maximum bigger than the minimum character limit
+        Given I am on the "Content types" page
+        And I click in the "Content" Content type group
+        When I click at "Create a content type" button
+        And I fill form with:
+            | Field      | Value |
+            | Name       | Test  |
+            | Identifier | test  |
+        And I add a field type "Text line" with:
+            | Field           | Value |
+            | Name            | Text  |
+            | Identifier      | text  |
+            | Minimum length  | 4     |
+            | Maximum length  | 2     |
+        And I click at "OK" button
+        Then Publishing fails with validation error message "Form did not validate. Please review errors below."
+
+    @javascript @edge
+    Scenario: Creating a valid content type with a text line Field works when using a minimum equal to the maximum character limit
+        Given I am on the "Content types" page
+        And I click in the "Content" Content type group
+        When I click at "Create a content type" button
+        And I fill form with:
+            | Field      | Value |
+            | Name       | Test  |
+            | Identifier | test  |
+        And I add a field type "Text line" with:
+            | Field           | Value |
+            | Name            | Text  |
+            | Identifier      | text  |
+            | Minimum length  | 4     |
+            | Maximum length  | 4     |
+        And I click at "OK" button
+        Then the Content is successfully published with the message "The Content type draft was successfully updated and published. Related Content has also been updated."
+
+    @javascript @edge
+    Scenario: Creating an invalid content type with a text line Field fails when using a negative minimum character limit
+        Given I am on the "Content types" page
+        And I click in the "Content" Content type group
+        When I click at "Create a content type" button
+        And I fill form with:
+            | Field      | Value |
+            | Name       | Test  |
+            | Identifier | test  |
+        And I add a field type "Text line" with:
+            | Field           | Value |
+            | Name            | Text  |
+            | Identifier      | text  |
+            | Minimum length  | -1    |
+            | Maximum length  | 4     |
+        And I click at "OK" button
+        Then Publishing fails with validation error message "Form did not validate. Please review errors below."
+
+    @javascript @edge
+    Scenario: Creating an invalid content type with a text line Field fails when using a maximum character limit equal to zero
+        Given I am on the "Content types" page
+        And I click in the "Content" Content type group
+        When I click at "Create a content type" button
+        And I fill form with:
+            | Field      | Value |
+            | Name       | Test  |
+            | Identifier | test  |
+        And I add a field type "Text line" with:
+            | Field           | Value |
+            | Name            | Text  |
+            | Identifier      | text  |
+            | Minimum length  | 0     |
+            | Maximum length  | 0     |
+        And I click at "OK" button
+        Then Publishing fails with validation error message "Form did not validate. Please review errors below."
+
+    @javascript @edge
+    Scenario: Creating an invalid content type with a text line Field fails when using a negative maximum character limit
+        Given I am on the "Content types" page
+        And I click in the "Content" Content type group
+        When I click at "Create a content type" button
+        And I fill form with:
+            | Field      | Value |
+            | Name       | Test  |
+            | Identifier | test  |
+        And I add a field type "Text line" with:
+            | Field           | Value |
+            | Name            | Text  |
+            | Identifier      | text  |
+            | Minimum length  | 0     |
+            | Maximum length  | -1    |
+        And I click at "OK" button
+        Then Publishing fails with validation error message "Form did not validate. Please review errors below."
 
     ##
     # Update Content using a Content Type that has a text line Field Type
@@ -114,7 +197,7 @@ Feature: Test the validations done on fields from PlatformUI - text line fieldty
         And I publish the content
         Then the Content is successfully published
 
-    @javascript
+    @javascript @isFailing
     Scenario: Updating a valid text line Field works when using a value within limited character scope
         Given a Content Type with a "text line" Field exists with Properties:
             | Validator                | Value |
@@ -125,10 +208,7 @@ Feature: Test the validations done on fields from PlatformUI - text line fieldty
         And I publish the content
         Then the Content is successfully published
 
-    ############################################################################
-    ########### This Scenario is now failing. Issue opened:
-    ############################################################################
-    @javascript
+    @javascript @isFailing
     Scenario: Updating a text line Field fails validation when using a value smaller than minimum character limit allowed
         Given a Content Type with a "text line" Field exists with Properties:
             | Validator                | Value |
@@ -139,10 +219,7 @@ Feature: Test the validations done on fields from PlatformUI - text line fieldty
         And I publish the content
         Then Publishing fails with validation error message "The value should have at least 2 characters"
 
-    ############################################################################
-    ########### This Scenario is now failing. Issue opened:
-    ############################################################################
-    @javascript
+    @javascript @isFailing
     Scenario: Updating a text line Field fails validation when using a value bigger than maximum character limit allowed
         Given a Content Type with a "text line" Field exists with Properties:
             | Validator                | Value |
