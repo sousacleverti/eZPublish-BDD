@@ -62,7 +62,7 @@ Feature: Test the validations done on fields from PlatformUI - keywords fieldtyp
         Given a Content Type with a "keywords" Field exists
         And a Content of this type exists
         When I edit this content
-        And I set "Test text update" as the Field Value
+        And I set "Test keywords update" as the Field Value
         And I publish the content
         Then the Content is successfully published
 
