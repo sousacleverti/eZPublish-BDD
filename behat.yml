@@ -38,3 +38,6 @@ platformUI_BDD_profile:
         keywordsFieldType:
             paths: [ src/BDDTestBundle/Features/KeywordsFieldType.feature ]
             contexts: [ EzSystems\PlatformUIBundle\Features\Context\Fields ]
+        countryFieldType:
+            paths: [ src/BDDTestBundle/Features/CountryFieldType.feature ]
+            contexts: [ EzSystems\PlatformUIBundle\Features\Context\Fields ]
