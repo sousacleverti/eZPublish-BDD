@@ -243,7 +243,7 @@ Feature: Test the validations done on fields from PlatformUI - text line fieldty
     # Viewing content that has a text line fieldtype
     ##
     @javascript
-    Scenario: Viewing a Content that has a text line fieldtype should show the expected value when the value is positive
+    Scenario: Viewing a Content that has a text line fieldtype should show the expected value when the value is plausible
         Given a Content Type with a "text line" Field exists
         And a Content of this type exists with "text line" Field Value set to "Test text"
         When I view this Content

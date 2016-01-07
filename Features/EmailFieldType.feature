@@ -96,7 +96,7 @@ Feature: Test the validations done on fields from PlatformUI - Email fieldtype
     # Viewing content that has an email fieldtype
     ##
     @javascript
-    Scenario: Viewing a Content that has an e-mail address fieldtype should show the expected value
+    Scenario: Viewing a Content that has an e-mail address fieldtype should show the expected value when the value is plausible
         Given a Content Type with an "e-mail address" Field exists
         And a Content of this type exists with "e-mail address" Field Value set to "paul@acme.com"
         When I view this Content

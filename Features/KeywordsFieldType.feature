@@ -87,7 +87,7 @@ Feature: Test the validations done on fields from PlatformUI - keywords fieldtyp
     # Viewing content that has a keywords fieldtype
     ##
     @javascript
-    Scenario: Viewing a Content that has a keywords fieldtype should show the expected value when the value is positive
+    Scenario: Viewing a Content that has a keywords fieldtype should show the expected value when the value is plausible
         Given a Content Type with a "keywords" Field exists
         And a Content of this type exists with "keywords" Field Value set to "Test text"
         When I view this Content
