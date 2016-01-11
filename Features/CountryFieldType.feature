@@ -77,6 +77,7 @@ Feature: Test the validations done on fields from PlatformUI - country fieldtype
         And I set no option as the Field Value
         And I publish the content
         Then Publishing fails with validation error message "This field is required"
+
     ##
     # Update Content using a Content Type that has a country Field Type
     ##
