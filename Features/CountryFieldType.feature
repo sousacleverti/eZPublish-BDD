@@ -47,6 +47,19 @@ Feature: Test the validations done on fields from PlatformUI - country fieldtype
         Then the Content is successfully published
 
     @javascript
+    Scenario: Creating a country Field with multiple countries works
+        Given a Content Type with a "country" Field exists with Properties:
+            | Validator            | Value |
+            | isMultiple validator | true  |
+        When I create a content of this type
+        And I set no option as the Field Value
+        And I add the option "Peru" as the Field Value
+        And I add the option "Turkey" as the Field Value
+        And I add the option "Guinea" as the Field Value
+        And I publish the content
+        Then the Content is successfully published
+
+    @javascript
     Scenario: Creating a required country Field fails validation when using an empty value
         Given a Content Type with a required "country" Field exists
         When I create a content of this type
@@ -54,10 +67,20 @@ Feature: Test the validations done on fields from PlatformUI - country fieldtype
         And I publish the content
         Then Publishing fails with validation error message "This field is required"
 
+    @javascript
+    Scenario: Creating a required country Field with multiple countries fails validation when using an empty value
+        Given a Content Type with a "country" Field exists with Properties:
+            | Validator            | Value |
+            | isRequired validator | true  |
+            | isMultiple validator | true  |
+        When I create a content of this type
+        And I set no option as the Field Value
+        And I publish the content
+        Then Publishing fails with validation error message "This field is required"
     ##
     # Update Content using a Content Type that has a country Field Type
     ##
-    @javascript @run
+    @javascript
     Scenario: Updating a country field using a country Field works
         Given a Content Type with a "country" Field exists
         And a Content of this type exists
@@ -74,8 +97,33 @@ Feature: Test the validations done on fields from PlatformUI - country fieldtype
         Then the Content is successfully published
 
     @javascript
+    Scenario: Updating a country Field with multiple countries works
+        Given a Content Type with a "country" Field exists with Properties:
+            | Validator            | Value |
+            | isMultiple validator | true  |
+        And a Content of this type exists
+        When I edit this content
+        And I add the option "Peru" as the Field Value
+        And I add the option "Turkey" as the Field Value
+        And I add the option "Guinea" as the Field Value
+        And I publish the content
+        Then the Content is successfully published
+
+    @javascript
     Scenario: Updating a required country Field fails validation when using an empty value
         Given a Content Type with a required "country" Field exists
+        And a Content of this type exists
+        When I edit this content
+        And I set no option as the Field Value
+        And I publish the content
+        Then Publishing fails with validation error message "This field is required"
+
+    @javascript
+    Scenario: Updating a required country Field with multiple countries fails validation when using an empty value
+        Given a Content Type with a "country" Field exists with Properties:
+            | Validator            | Value |
+            | isRequired validator | true  |
+            | isMultiple validator | true  |
         And a Content of this type exists
         When I edit this content
         And I set no option as the Field Value
