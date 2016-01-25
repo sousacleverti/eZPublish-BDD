@@ -46,7 +46,7 @@ Feature: Test the validations done on fields from PlatformUI - country fieldtype
         And I publish the content
         Then the Content is successfully published
 
-    @javascript
+    @javascript @run
     Scenario: Creating a country Field with multiple countries works
         Given a Content Type with a "country" Field exists with Properties:
             | Validator            | Value |
