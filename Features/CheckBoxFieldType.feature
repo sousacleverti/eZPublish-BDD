@@ -1,7 +1,6 @@
-
 Feature: Test the validations done on fields from Editorial Interface - Checkbox fieldtype
     In order to validate the checkbox fieldtype
-    As an Editor  user
+    As an Editor user
     I need to be able to create and update content with checkbox fieldtypes
 
     Background:
