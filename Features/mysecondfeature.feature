@@ -1,5 +1,3 @@
-# https://github.com/miguelcleverti/PlatformUIBundle/blob/codeResctructure/Features/Context/SubContext/CommonActions.php
-
 Feature: First BDD PlatformUI Tests
 
     @javascript
@@ -49,3 +47,5 @@ Feature: First BDD PlatformUI Tests
         And I have a Content Type with identifier "NonContainerTest11" in Group with identifier "Content" with fields:
                 | identifier | type       | name |
                 | title      | ezstring   | Name |
+
+# https://github.com/miguelcleverti/PlatformUIBundle/blob/codeResctructure/Features/Context/SubContext/CommonActions.php
