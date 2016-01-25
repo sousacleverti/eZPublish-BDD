@@ -79,6 +79,7 @@ class PlatformUITests extends PlatformUI {
 
     /**
      * @Then I can't click the button :button
+     * @Then I see the button :button grayed out
      */
     public function iCantClick($button) {
         $element = $this->getElementByText($button, 'button');
