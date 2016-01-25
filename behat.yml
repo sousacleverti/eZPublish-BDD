@@ -41,3 +41,6 @@ platformUI_BDD_profile:
         countryFieldType:
             paths: [ src/BDDTestBundle/Features/CountryFieldType.feature ]
             contexts: [ EzSystems\PlatformUIBundle\Features\Context\Fields ]
+        richTextFieldType:
+            paths: [ src/BDDTestBundle/Features/RichTextFieldType.feature ]
+            contexts: [ EzSystems\PlatformUIBundle\Features\Context\Fields ]
